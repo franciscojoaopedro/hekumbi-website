@@ -22,15 +22,26 @@ export function GallerySection() {
 
   // Placeholder images - em produção, usar imagens reais dos projetos
   const galleryImages = [
-    "/placeholder.svg?height=400&width=400&text=Projeto+Condomínio+1",
-    "/placeholder.svg?height=400&width=400&text=Projeto+Hospital+1",
-    "/placeholder.svg?height=400&width=400&text=Projeto+Escola+1",
-    "/placeholder.svg?height=400&width=400&text=Projeto+Shopping+1",
-    "/placeholder.svg?height=400&width=400&text=Projeto+Empresa+1",
-    "/placeholder.svg?height=400&width=400&text=Projeto+Igreja+1",
-    "/placeholder.svg?height=400&width=400&text=Projeto+Condomínio+2",
-    "/placeholder.svg?height=400&width=400&text=Projeto+Hospital+2",
-    "/placeholder.svg?height=400&width=400&text=Projeto+Escola+2",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Condomínio+1",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Hospital+1",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Escola+1",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Shopping+1",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Empresa+1",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Igreja+1",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Condomínio+2",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Hospital+2",
+    // "/placeholder.svg?height=400&width=400&text=Projeto+Escola+2",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250518-WA0006.jpg",
   ]
 
   const projects = [

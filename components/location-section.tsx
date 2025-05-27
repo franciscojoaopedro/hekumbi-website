@@ -29,7 +29,7 @@ export function LocationSection() {
     {
       icon: Phone,
       title: "Telefone",
-      content: "+244 XXX XXX XXX",
+      content: "+244 972 620 967",
       detail: "Disponível 24/7 para emergências",
       color: "from-green-500 to-emerald-500",
     },
@@ -196,6 +196,7 @@ export function LocationSection() {
                       }}
                     >
                       <MapPin className="w-12 h-12 text-red-500" />
+
                       <motion.div
                         className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-red-500/30 rounded-full"
                         animate={{
@@ -208,6 +209,7 @@ export function LocationSection() {
                           ease: "easeInOut",
                         }}
                       />
+
                     </motion.div>
 
                     {/* Location Label */}
@@ -230,7 +232,7 @@ export function LocationSection() {
                       whileHover={{ scale: 1.1, rotateZ: 5 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() =>
-                        window.open("https://maps.google.com/?q=Shopping+Talatona,+Luanda,+Angola", "_blank")
+                        window.open("https://maps.app.goo.gl/bab6hLqvSWXEbQfH6", "_blank")
                       }
                     >
                       Ver no Google Maps
