@@ -11,7 +11,7 @@ import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { LiveChat } from "@/components/live-chat"
 import { QuoteSystem } from "@/components/quote-system"
-import { AdminDashboardDynamic } from "@/components/admin-dashboard-dynamic"
+
 import { SupabaseAdminProvider } from "@/contexts/supabase-admin-context"
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
       <div className="min-h-screen bg-slate-900 text-white overflow-x-hidden">
         <LiveChat />
         <QuoteSystem />
-        <AdminDashboardDynamic />
+        {/* <AdminDashboardDynamic /> */}
         <Header />
         <main>
           <HeroSection />
