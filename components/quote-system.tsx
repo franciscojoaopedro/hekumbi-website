@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useHapticFeedback } from "@/hooks/use-haptic-feedback"
 import { Interactive3DCard } from "./interactive-3d-card"
+import { supabase } from "@/lib/supabase"
 
 interface QuoteFormData {
   name: string
@@ -83,31 +84,97 @@ export function QuoteSystem() {
     }
   }
 
-  const handleSubmit = () => {
-    setIsSubmitted(true)
-    haptic("success")
+  const handleSubmit = async () => {
+    try {
+      haptic("success")
 
-    // Aqui você integraria com seu backend
-    console.log("Quote submitted:", formData)
+      // 1. Criar ou buscar cliente
+      const { data: customer, error: customerError } = await supabase
+        .from("customers")
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+        })
+        .select()
+        .single()
 
-    setTimeout(() => {
-      setIsOpen(false)
-      setIsSubmitted(false)
-      setCurrentStep(1)
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        serviceType: "",
-        propertyType: "",
-        area: "",
-        frequency: "",
-        location: "",
-        description: "",
-        urgency: "",
+      if (customerError) {
+        console.error("Erro ao criar cliente:", customerError)
+        throw customerError
+      }
+
+      console.log("✅ Cliente criado:", customer)
+
+      // 2. Criar orçamento
+      const quoteNumber = `HEK-${Date.now().toString().slice(-6)}`
+      const estimatedValue = calculateEstimate()
+
+      const { data: quote, error: quoteError } = await supabase
+        .from("quotes")
+        .insert({
+          quote_number: quoteNumber,
+          customer_id: customer.id,
+          service_type: serviceTypes.find((s) => s.id === formData.serviceType)?.name || formData.serviceType,
+          property_type: formData.propertyType,
+          area: Number.parseInt(formData.area) || 0,
+          frequency: formData.frequency,
+          urgency: formData.urgency,
+          location: formData.location,
+          description: formData.description,
+          estimated_value: estimatedValue,
+          status: "pending",
+          priority: formData.urgency === "emergencia" ? "high" : formData.urgency === "urgente" ? "medium" : "low",
+          valid_until: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 dias
+        })
+        .select()
+        .single()
+
+      if (quoteError) {
+        console.error("Erro ao criar orçamento:", quoteError)
+        throw quoteError
+      }
+
+      console.log("✅ Orçamento criado:", quote)
+
+      // 3. Criar atividade
+      await supabase.from("activities").insert({
+        entity_type: "quote",
+        entity_id: quote.id,
+        action: "created",
+        description: `Novo orçamento solicitado por ${formData.name}`,
+        metadata: {
+          service_type: formData.serviceType,
+          estimated_value: estimatedValue,
+          urgency: formData.urgency,
+        },
       })
-    }, 3000)
+
+      console.log("✅ Dados salvos no banco com sucesso!")
+      setIsSubmitted(true)
+
+      setTimeout(() => {
+        setIsOpen(false)
+        setIsSubmitted(false)
+        setCurrentStep(1)
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          serviceType: "",
+          propertyType: "",
+          area: "",
+          frequency: "",
+          location: "",
+          description: "",
+          urgency: "",
+        })
+      }, 3000)
+    } catch (error) {
+      console.error("❌ Erro ao salvar orçamento:", error)
+      alert("Erro ao enviar solicitação. Tente novamente.")
+    }
   }
 
   const calculateEstimate = () => {

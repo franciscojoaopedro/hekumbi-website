@@ -1,9 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { supabase } from "@/lib/supabase"
+import { supabaseAdmin } from "@/lib/supabase"
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const { data: messages, error } = await supabase
+    const { data: messages, error } = await supabaseAdmin
       .from("messages")
       .select("*")
       .eq("chat_id", params.id)
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     const body = await request.json()
     const { content, sender = "admin", messageType = "text" } = body
 
-    const { data: message, error } = await supabase
+    const { data: message, error } = await supabaseAdmin
       .from("messages")
       .insert({
         chat_id: params.id,
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     }
 
     // Atualizar última mensagem do chat
-    await supabase
+    await supabaseAdmin
       .from("chats")
       .update({
         last_message: content,

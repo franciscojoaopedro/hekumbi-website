@@ -4,10 +4,12 @@ import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { supabase } from "@/lib/supabase"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,19 +19,43 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+      setIsLoggedIn(!!user)
+    }
+
+    checkAuth()
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      setIsLoggedIn(!!session?.user)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
   const navItems = [
     { name: "Início", href: "#inicio" },
     { name: "Sobre", href: "#sobre" },
     { name: "Serviços", href: "#servicos" },
     { name: "Missão e Valores", href: "#missao" },
     { name: "Contato", href: "#contato" },
+    {
+      name: isLoggedIn ? "Dashboard" : "Admin",
+      href: "/admin",
+      isAdmin: true,
+    },
   ]
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      // initial={{ y: -100 }}
+      // animate={{ y: 0 }}
+      // transition={{ duration: 0.8, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? "bg-slate-900/95 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
@@ -53,11 +79,15 @@ export function Header() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.3 }}
-                whileHover={{ y: -2 }}
-                className="text-white hover:text-cyan-400 transition-colors duration-300 relative group"
+                // initial={{ opacity: 0, y: -20 }}
+                // animate={{ opacity: 1, y: 0 }}
+                // transition={{ delay: index * 0.1 + 0.3 }}
+                // whileHover={{ y: -2 }}
+                className={`transition-colors duration-300 relative group ${
+                  item.isAdmin
+                    ? "text-cyan-400 hover:text-cyan-300 text-sm font-medium"
+                    : "text-white hover:text-cyan-400"
+                }`}
               >
                 {item.name}
                 <motion.div className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
@@ -68,13 +98,13 @@ export function Header() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 }}
             >
-              <Button
+              <motion.button
                 className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-full transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{scale: 1.05}}
                 whileTap={{ scale: 0.95 }}
               >
                 Fale Conosco
-              </Button>
+              </motion.button>
             </motion.div>
           </nav>
 
@@ -110,7 +140,11 @@ export function Header() {
                 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-white hover:text-cyan-400 transition-colors duration-300 py-2"
+                className={`block transition-colors duration-300 py-2 ${
+                  item.isAdmin
+                    ? "text-cyan-400 hover:text-cyan-300 text-sm font-medium"
+                    : "text-white hover:text-cyan-400"
+                }`}
               >
                 {item.name}
               </motion.a>

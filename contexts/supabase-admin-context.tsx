@@ -1,6 +1,7 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
+import { createClient } from "@supabase/supabase-js"
 
 interface Chat {
   id: string
@@ -58,7 +59,11 @@ interface Notification {
   timestamp: Date
 }
 
-interface SupabaseAdminContextType {
+// Tipos para o contexto
+type SupabaseContextType = {
+  supabaseAdmin: any
+  isLoading: boolean
+  error: string | null
   isOpen: boolean
   setIsOpen: (open: boolean) => void
   chats: Chat[]
@@ -81,9 +86,14 @@ interface SupabaseAdminContextType {
   lastUpdate: Date | null
 }
 
-const SupabaseAdminContext = createContext<SupabaseAdminContextType | undefined>(undefined)
+// Criando o contexto
+const SupabaseAdminContext = createContext<SupabaseContextType | undefined>(undefined)
 
+// Provider component
 export function SupabaseAdminProvider({ children }: { children: ReactNode }) {
+  const [supabaseAdmin, setSupabaseAdmin] = useState<any>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [chats, setChats] = useState<Chat[]>([])
   const [chatLoading, setChatLoading] = useState(false)
@@ -253,6 +263,34 @@ export function SupabaseAdminProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  useEffect(() => {
+    try {
+      // Inicializar o cliente Supabase com a chave de serviço
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+      if (!supabaseUrl || !supabaseServiceKey) {
+        console.warn("Supabase URL or Service Key not available. Using fallback.")
+        setIsLoading(false)
+        return
+      }
+
+      const supabase = createClient(supabaseUrl, supabaseServiceKey, {
+        auth: {
+          persistSession: true,
+        },
+      })
+
+      setSupabaseAdmin(supabase)
+      console.log("SupabaseAdminProvider initialized")
+    } catch (err: any) {
+      console.error("Error initializing Supabase Admin client:", err)
+      setError(err.message || "Failed to initialize Supabase Admin")
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
   // Calcular estatísticas
   const chatStats = {
     total: chats.length,
@@ -307,6 +345,9 @@ export function SupabaseAdminProvider({ children }: { children: ReactNode }) {
   return (
     <SupabaseAdminContext.Provider
       value={{
+        supabaseAdmin,
+        isLoading,
+        error,
         isOpen,
         setIsOpen,
         chats,
@@ -334,10 +375,39 @@ export function SupabaseAdminProvider({ children }: { children: ReactNode }) {
   )
 }
 
+// Hook para usar o contexto
 export function useSupabaseAdmin() {
   const context = useContext(SupabaseAdminContext)
+
   if (context === undefined) {
-    throw new Error("useSupabaseAdmin must be used within a SupabaseAdminProvider")
+    // Não lançar erro, apenas retornar um objeto vazio com fallbacks
+    console.warn("useSupabaseAdmin must be used within a SupabaseAdminProvider")
+    return {
+      supabaseAdmin: null,
+      isLoading: false,
+      error: "Context not available",
+      isOpen: false,
+      setIsOpen: () => {},
+      chats: [],
+      chatStats: { total: 0, active: 0, pending: 0, closed: 0 },
+      chatLoading: false,
+      chatError: null,
+      fetchChats: async () => {},
+      updateChatStatus: async () => {},
+      quotes: [],
+      quoteStats: { total: 0, pending: 0, approved: 0, rejected: 0, sent: 0 },
+      quoteLoading: false,
+      quoteError: null,
+      fetchQuotes: async () => {},
+      updateQuoteStatus: async () => {},
+      analytics: null,
+      analyticsLoading: false,
+      notifications: [],
+      removeNotification: () => {},
+      isOnline: false,
+      lastUpdate: null,
+    }
   }
+
   return context
 }

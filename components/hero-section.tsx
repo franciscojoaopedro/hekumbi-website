@@ -47,13 +47,31 @@ export function HeroSection() {
       id="inicio"
       className="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden"
     >
-      {/* 3D Background Elements */}
+      {/* Background Video */}
+      <motion.div className="absolute inset-0 z-0 overflow-hidden ">
+        <video
+          autoPlay // Automatically plays the video
+          loop     // Loops the video continuously
+          muted    // Mutes the video audio
+          className="min-w-full min-h-full object-cover opacity-55" 
+        >
+      
+          <source src="/videos/test.mp4" type="video/mp4" />
+         
+          Seu navegador não suporta vídeos em HTML5.
+        </video>
+        {/* Optional overlay to improve text readability over the video */}
+        <motion.div className="absolute inset-0 bg-black/20" />
+      </motion.div>
+
+      {/* Existing decorative background elements */}
       <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "30%"]) }} className="absolute inset-0 z-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-xl" />
         <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-full blur-xl" />
         <div className="absolute bottom-40 left-1/4 w-40 h-40 bg-gradient-to-r from-blue-500/20 to-green-500/20 rounded-full blur-xl" />
       </motion.div>
 
+      {/* Main content of the hero section */}
       <motion.div
         style={{ y, opacity, scale, rotateX, transformPerspective: 1000 }}
         className="container mx-auto px-4 text-center relative z-10"
@@ -117,7 +135,6 @@ export function HeroSection() {
           <motion.p
             variants={itemVariants}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
-  
           >
             Comprometidos com excelência e qualidade para o seu negócio. Soluções personalizadas para todos os
             segmentos.
@@ -173,6 +190,7 @@ export function HeroSection() {
         </motion.div>
       </motion.div>
 
+      {/* Scroll indicator */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
