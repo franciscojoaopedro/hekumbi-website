@@ -14,6 +14,7 @@ interface Chat {
   lastMessage: string
   lastMessageTime: string
   unreadCount: number
+  createdAt?: string
 }
 
 interface Quote {
@@ -140,7 +141,26 @@ export function SupabaseAdminProvider({ children }: { children: ReactNode }) {
       }
 
       const data = await response.json()
-      setChats(data.chats)
+      console.log("Fetched chats:", data) 
+      if (!data.chats || !Array.isArray(data.chats)) {
+        throw new Error("Dados de chats inválidos")
+      }
+
+      const sortedChats = data.chats.sort((a: Chat, b: Chat) => {
+        const dateA = new Date(a.createdAt || a.createdAt || 0)
+        const dateB = new Date(b.createdAt || b.createdAt || 0)
+        return dateB.getTime() - dateA.getTime()
+      }) as Chat[]
+      console.log("Sorted chats:", sortedChats)
+      // Verificar se os dados são válidos
+
+      const listChats = sortedChats.map((chat) => ({
+        ...chat,
+        lastMessageTime: chat.lastMessageTime || chat.createdAt || new Date().toISOString(),
+        unreadCount: chat.unreadCount || 0,
+      }))
+      console.log("Processed chats:", listChats)
+      setChats(data.chats as Chat[])
       setLastUpdate(new Date())
     } catch (error) {
       setChatError(error instanceof Error ? error.message : "Erro desconhecido")

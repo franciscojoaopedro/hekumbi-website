@@ -8,16 +8,17 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { Lock, Mail, Eye, EyeOff, Loader2, AlertCircle, CheckCircle, User, Shield } from "lucide-react"
+import { configs } from "@/lib/configs"
 
 interface AuthGuardProps {
   children: React.ReactNode
 }
 
 // Sistema de autenticação local para desenvolvimento
-const LOCAL_AUTH_KEY = "hekumbi_admin_auth"
+const LOCAL_AUTH_KEY = configs.LOCAL_AUTH_KEY
 const DEMO_CREDENTIALS = {
-  email: "admin@hekumbi.com",
-  password: "hekumbi2024",
+  email: configs.DEMO_CREDENTIALS_EMAIL,
+  password: configs.DEMO_CREDENTIALS_EMAIL_PASSWORD,
 }
 
 export function AuthGuard({ children }: AuthGuardProps) {
@@ -105,7 +106,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
           // Salvar usuário criado
           const users = JSON.parse(localStorage.getItem("hekumbi_users") || "[]")
-          users.push({ email, password, ...newUser })
+          users.push({ password, ...newUser })
           localStorage.setItem("hekumbi_users", JSON.stringify(users))
 
           setSuccess("✅ Conta criada com sucesso! Agora você pode fazer login.")
