@@ -199,7 +199,7 @@ export function GestureControlledHero() {
                 size="lg"
                 className="border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 px-8 py-4 text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
               >
-                Entre em Contato
+                Entre em Contacto
               </Button>
             </motion.div>
           </motion.div>

@@ -26,7 +26,7 @@ export function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      content: "contato@hekumbi.co.ao",
+      content: "contacto@hekumbi.co.ao",
     },
     {
       icon: Clock,
@@ -36,7 +36,7 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="contato" className="py-20 bg-slate-800/30">
+    <section id="contacto" className="py-20 bg-slate-800/30">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -46,7 +46,7 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Entre em <span className="text-cyan-400">Contato</span>
+            Entre em <span className="text-cyan-400">Contacto</span>
           </h2>
           <div className="w-24 h-1 bg-cyan-400 mx-auto mb-8"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -61,7 +61,7 @@ export function ContactSection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold text-cyan-400 mb-8">Informações de Contato</h3>
+            <h3 className="text-2xl font-bold text-cyan-400 mb-8">Informações de Contacto</h3>
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <motion.div

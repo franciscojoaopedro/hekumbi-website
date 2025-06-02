@@ -558,7 +558,7 @@ export function QuoteSystem() {
 
                   <h3 className="text-white text-xl font-bold mb-4">Solicitação Enviada!</h3>
                   <p className="text-gray-300 mb-6">
-                    Recebemos sua solicitação de orçamento. Nossa equipe entrará em contato em até 24 horas.
+                    Recebemos sua solicitação de orçamento. Nossa equipe entrará em contacto em até 24 horas.
                   </p>
 
                   <div className="bg-slate-700/50 rounded-xl p-4 mb-6">

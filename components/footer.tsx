@@ -27,7 +27,7 @@ export function Footer() {
     { name: "Sobre", href: "#sobre" },
     { name: "Serviços", href: "#servicos" },
     { name: "Galeria", href: "#galeria" },
-    { name: "Contato", href: "#contato" },
+    { name: "Contacto", href: "#contacto" },
     { name: "Localização", href: "#localizacao" },
   ]
 
@@ -108,7 +108,7 @@ export function Footer() {
               </motion.div>
               <motion.div className="flex items-center gap-3 text-gray-300 text-sm" whileHover={{ x: 5, rotateY: 2 }}>
                 <Mail className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-                <span>contato@hekumbi.co.ao</span>
+                <span>contacto@hekumbi.co.ao</span>
               </motion.div>
             </div>
           </motion.div>

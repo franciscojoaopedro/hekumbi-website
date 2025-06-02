@@ -66,7 +66,7 @@ export function LiveChat() {
     "Falar com atendente",
     "Horário de funcionamento",
     "Localização",
-    "Contato",
+    "Contacto",
   ]
 
   const botResponses: Record<string, string> = {
@@ -80,8 +80,8 @@ export function LiveChat() {
       "🕐 **HORÁRIO DE ATENDIMENTO**\n\n📅 **Segunda a Sexta:**\n⏰ 08:00 às 18:00\n\n📅 **Sábados:**\n⏰ 08:00 às 12:00\n\n🚨 **EMERGÊNCIAS 24H:**\n📞 +244 923 456 789\n📧 emergencia@hekumbi.com\n\n🌙 Fora do horário? Deixe sua mensagem!",
     localização:
       "📍 **NOSSA LOCALIZAÇÃO**\n\n🏢 **Sede Principal:**\nLuanda, Angola\n\n🌍 **Área de Cobertura:**\n• Luanda (todas as regiões)\n• Benguela\n• Huambo\n• Lobito\n\n🚚 Atendimento em toda Angola!\n📞 Consulte disponibilidade: +244 923 456 789",
-    contato:
-      "📞 **FALE CONOSCO**\n\n💬 **WhatsApp:** +244 923 456 789\n📧 **Email:** contato@hekumbi.com\n🌐 **Site:** www.hekumbi.com\n📍 **Endereço:** Luanda, Angola\n\n⚡ **Resposta Rápida:**\n• WhatsApp: Imediato\n• Email: Até 2 horas\n• Chat: Tempo real",
+    contacto:
+      "📞 **FALE CONOSCO**\n\n💬 **WhatsApp:** +244 923 456 789\n📧 **Email:** contacto@hekumbi.com\n🌐 **Site:** www.hekumbi.com\n📍 **Endereço:** Luanda, Angola\n\n⚡ **Resposta Rápida:**\n• WhatsApp: Imediato\n• Email: Até 2 horas\n• Chat: Tempo real",
   }
 
   useEffect(() => {
@@ -404,7 +404,7 @@ export function LiveChat() {
 
   const sendWelcomeMessage = async (chatId: string) => {
     const welcomeText =
-      "👋 **Olá! Bem-vindo à HEKUMBI!**\n\nSou seu assistente virtual e estou aqui para ajudá-lo com:\n\n🧹 **Informações sobre serviços**\n💰 **Solicitação de orçamentos**\n👨‍💼 **Contato com nossa equipe**\n📞 **Suporte e dúvidas**\n\n✨ **Como posso ajudá-lo hoje?**"
+      "👋 **Olá! Bem-vindo à HEKUMBI!**\n\nSou seu assistente virtual e estou aqui para ajudá-lo com:\n\n🧹 **Informações sobre serviços**\n💰 **Solicitação de orçamentos**\n👨‍💼 **Contacto com nossa equipe**\n📞 **Suporte e dúvidas**\n\n✨ **Como posso ajudá-lo hoje?**"
 
     await saveMessage(chatId, welcomeText, "bot")
   }
@@ -464,7 +464,7 @@ export function LiveChat() {
     setTimeout(async () => {
       const lowerText = text.toLowerCase()
       let botResponse =
-        "Obrigado pela sua mensagem! 😊\n\nUm de nossos atendentes entrará em contato em breve. Enquanto isso, posso ajudá-lo com informações básicas sobre nossos serviços.\n\n💡 **Dica:** Use as respostas rápidas abaixo para agilizar o atendimento!"
+        "Obrigado pela sua mensagem! 😊\n\nUm de nossos atendentes entrará em contacto em breve. Enquanto isso, posso ajudá-lo com informações básicas sobre nossos serviços.\n\n💡 **Dica:** Use as respostas rápidas abaixo para agilizar o atendimento!"
 
       for (const [key, response] of Object.entries(botResponses)) {
         if (lowerText.includes(key.replace(/\s+/g, "")) || lowerText.includes(key)) {
@@ -509,7 +509,7 @@ export function LiveChat() {
       if (chatData) {
         await saveMessage(
           chatData.id,
-          `Obrigado por fornecer seu contato, ${customerName || "visitante"}! 📞\n\nAgora podemos entrar em contato caso necessário. Como posso ajudá-lo hoje?`,
+          `Obrigado por fornecer seu contacto, ${customerName || "visitante"}! 📞\n\nAgora podemos entrar em contacto caso necessário. Como posso ajudá-lo hoje?`,
           "bot",
         )
       }
@@ -644,7 +644,7 @@ export function LiveChat() {
                 className="bg-slate-700 border-slate-600 text-white"
               />
               <p className="text-xs text-gray-400">
-                Usamos seu telefone apenas para contato relacionado ao seu atendimento.
+                Usamos seu telefone apenas para contacto relacionado ao seu atendimento.
               </p>
             </div>
           </div>

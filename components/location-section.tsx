@@ -36,7 +36,7 @@ export function LocationSection() {
     {
       icon: Mail,
       title: "Email",
-      content: "contato@hekumbi.ao",
+      content: "contacto@hekumbi.ao",
       detail: "Resposta em até 24 horas",
       color: "from-blue-500 to-cyan-500",
     },
@@ -86,7 +86,7 @@ export function LocationSection() {
           {/* Contact Information */}
           <motion.div style={{ y, transformPerspective: 1000 }} className="space-y-6">
             <motion.h3 className="text-2xl font-bold text-cyan-400 mb-8" whileHover={{ rotateX: 5, scale: 1.02 }}>
-              Informações de Contato
+              Informações de Contacto
             </motion.h3>
 
             {contactInfo.map((info, index) => (

@@ -43,9 +43,9 @@ export function Header() {
     { name: "Sobre", href: "#sobre" },
     { name: "Serviços", href: "#servicos" },
     { name: "Missão e Valores", href: "#missao" },
-    { name: "Contato", href: "#contato" },
+    { name: "Contacto", href: "#contacto" },
     {
-      name: isLoggedIn ? "Dashboard" : "Admin",
+      name: isLoggedIn ? "Dashboard" : "",
       href: "/admin",
       isAdmin: true,
     },
