@@ -165,7 +165,7 @@ export function HapticSettings() {
                 <div className="bg-slate-700/50 rounded-lg p-4">
                   <h4 className="text-white font-medium mb-2">Informações do Dispositivo</h4>
                   <div className="space-y-1 text-sm">
-                    <p className="text-gray-400">Vibração: {navigator.vibrate ? "✅ Suportada" : "❌ Não suportada"}</p>
+                    <p className="text-gray-400">Vibração: {navigator.vibrate() ? "✅ Suportada" : "❌ Não suportada"}</p>
                     <p className="text-gray-400">Touch: {window.TouchEvent ? "✅ Suportado" : "❌ Não suportado"}</p>
                     <p className="text-gray-400">
                       Orientação: {window.DeviceOrientationEvent ? "✅ Suportada" : "❌ Não suportada"}
