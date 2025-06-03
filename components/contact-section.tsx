@@ -50,7 +50,7 @@ export function ContactSection() {
           </h2>
           <div className="w-24 h-1 bg-cyan-400 mx-auto mb-8"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Estamos prontos para atender suas necessidades. Fale conosco!
+            Estamos prontos para atender suas necessidades. Fale connosco!
           </p>
         </motion.div>
 

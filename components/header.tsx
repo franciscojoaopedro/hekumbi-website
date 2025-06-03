@@ -103,7 +103,7 @@ export function Header() {
                 whileHover={{scale: 1.05}}
                 whileTap={{ scale: 0.95 }}
               >
-                Fale Conosco
+                Fale Connosco
               </motion.button>
             </motion.div>
           </nav>
@@ -149,7 +149,7 @@ export function Header() {
                 {item.name}
               </motion.a>
             ))}
-            <Button className="bg-cyan-500 hover:bg-cyan-600 text-white w-full mt-4">Fale Conosco</Button>
+            <Button className="bg-cyan-500 hover:bg-cyan-600 text-white w-full mt-4">Fale Connosco</Button>
           </div>
         </motion.nav>
       </div>

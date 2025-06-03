@@ -81,7 +81,7 @@ export function LiveChat() {
     localização:
       "📍 **NOSSA LOCALIZAÇÃO**\n\n🏢 **Sede Principal:**\nLuanda, Angola\n\n🌍 **Área de Cobertura:**\n• Luanda (todas as regiões)\n• Benguela\n• Huambo\n• Lobito\n\n🚚 Atendimento em toda Angola!\n📞 Consulte disponibilidade: +244 923 456 789",
     contacto:
-      "📞 **FALE CONOSCO**\n\n💬 **WhatsApp:** +244 923 456 789\n📧 **Email:** contacto@hekumbi.com\n🌐 **Site:** www.hekumbi.com\n📍 **Endereço:** Luanda, Angola\n\n⚡ **Resposta Rápida:**\n• WhatsApp: Imediato\n• Email: Até 2 horas\n• Chat: Tempo real",
+      "📞 **FALE CONNOSCO**\n\n💬 **WhatsApp:** +244 923 456 789\n📧 **Email:** contacto@hekumbi.com\n🌐 **Site:** www.hekumbi.com\n📍 **Endereço:** Luanda, Angola\n\n⚡ **Resposta Rápida:**\n• WhatsApp: Imediato\n• Email: Até 2 horas\n• Chat: Tempo real",
   }
 
   useEffect(() => {
