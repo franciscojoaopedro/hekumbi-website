@@ -31,11 +31,11 @@ export function GallerySection() {
     // "/placeholder.svg?height=400&width=400&text=Projeto+Condomínio+2",
     // "/placeholder.svg?height=400&width=400&text=Projeto+Hospital+2",
     // "/placeholder.svg?height=400&width=400&text=Projeto+Escola+2",
-    "images/IMG-20250518-WA0006.jpg",
-    "images/IMG-20250518-WA0006.jpg",
-    "images/IMG-20250518-WA0006.jpg",
-    "images/IMG-20250518-WA0006.jpg",
-    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250615-WA0049.jpg",
+    "images/IMG-20250615-WA0053.jpg",
+    "images/IMG-20250604-WA0021.jpg",
+    "images/IMG-20250604-WA0024.jpg",
+    "images/IMG-20250527-WA0018.jpg",
     "images/IMG-20250518-WA0006.jpg",
     "images/IMG-20250518-WA0006.jpg",
     "images/IMG-20250518-WA0006.jpg",
@@ -46,40 +46,36 @@ export function GallerySection() {
 
   const projects = [
     {
-      title: "Condomínio Talatona Plaza",
+      title: "Centralidade do Sequele",
       category: "Condomínio",
-      description: "Limpeza completa de 200 apartamentos e áreas comuns",
+      description: "Lavagem dos sofás",
       image: galleryImages[0],
     },
-    {
-      title: "Hospital Américo Boavida",
-      category: "Hospital",
-      description: "Higienização hospitalar com protocolos rigorosos",
+     {
+      title: "Centralidade do Sequele",
+      category: "Condomínio",
+      description: "Lavagem dos sofás",
       image: galleryImages[1],
     },
-    {
-      title: "Colégio Mutu ya Kevela",
-      category: "Educação",
-      description: "Limpeza de salas de aula e laboratórios",
+     {
+      title: "Residencia  Projecto nova vida",
+      category: "Residencial",
+      description: "Lavagem dos sofás e tapetes",
       image: galleryImages[2],
     },
     {
-      title: "Shopping Belas",
-      category: "Comercial",
-      description: "Manutenção de centro comercial",
+      title: "Residencia  Projecto nova vida",
+      category: "Residencial",
+      description: "Lavagem dos sofás e tapetes",
       image: galleryImages[3],
     },
+
+    
     {
-      title: "Sonangol Headquarters",
-      category: "Corporativo",
-      description: "Limpeza de escritórios corporativos",
-      image: galleryImages[4],
-    },
-    {
-      title: "Igreja Universal",
+      title: "Igreja internacional Sabedoria de Deus ( IISD)",
       category: "Religioso",
-      description: "Limpeza respeitosa de templo religioso",
-      image: galleryImages[5],
+      description: "Lavagem e manutenção de templo",
+      image: galleryImages[4],
     },
   ]
 
