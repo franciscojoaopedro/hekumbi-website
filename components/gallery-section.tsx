@@ -36,9 +36,9 @@ export function GallerySection() {
     "images/IMG-20250604-WA0021.jpg",
     "images/IMG-20250604-WA0024.jpg",
     "images/IMG-20250527-WA0018.jpg",
-    "images/IMG-20250518-WA0006.jpg",
-    "images/IMG-20250518-WA0006.jpg",
-    "images/IMG-20250518-WA0006.jpg",
+    "images/IMG-20250530-WA0030.jpg",
+    "images/IMG-20250518-WA0002.jpg",
+    "images/IMG-20250626-WA0015.jpg",
     "images/IMG-20250518-WA0006.jpg",
     "images/IMG-20250518-WA0006.jpg",
     "images/IMG-20250518-WA0006.jpg",
@@ -46,22 +46,16 @@ export function GallerySection() {
 
   const projects = [
     {
-      title: "Centralidade do Sequele",
+      title: "Condomínio Cajueiro",
       category: "Condomínio",
       description: "Lavagem dos sofás",
-      image: galleryImages[0],
+      image: galleryImages[7],
     },
      {
       title: "Centralidade do Sequele",
       category: "Condomínio",
       description: "Lavagem dos sofás",
       image: galleryImages[1],
-    },
-     {
-      title: "Residencia  Projecto nova vida",
-      category: "Residencial",
-      description: "Lavagem dos sofás e tapetes",
-      image: galleryImages[2],
     },
     {
       title: "Residencia  Projecto nova vida",
@@ -76,6 +70,18 @@ export function GallerySection() {
       category: "Religioso",
       description: "Lavagem e manutenção de templo",
       image: galleryImages[4],
+    },
+    {
+      title: "Igreja",
+      category: "Religioso",
+      description: "Lavagem das cadeiras",
+      image: galleryImages[5],
+    },
+    {
+      title: "Residencia  Talatona",
+      category: "Residencial",
+      description: "Lavagem dos sofás",
+      image: galleryImages[6],
     },
   ]
 
